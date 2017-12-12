@@ -1,0 +1,21 @@
+/* VIEW */
+
+#board {
+  height: 600px;
+  width: 600px;
+  display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;   
+    flex-wrap: wrap;
+}
+
+div {
+  display: inline-block;
+  font-size: 3em;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border : 1px solid black;
+  height: 200px;
+  width: 200px;
+}
