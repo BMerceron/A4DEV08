@@ -1,0 +1,71 @@
+<html>
+<head>
+	<style>
+		#board {
+			height: 600px;
+			width: 600px;
+			display: -webkit-flex; /* Safari */
+		    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+		    display: flex;   
+		    flex-wrap: wrap;
+		}
+		div {
+			display: inline-block;
+			font-size: 6em;
+			text-align: center;
+			vertical-align: middle;
+			box-sizing: border-box;
+			border : 1px solid black;
+			height: 200px;
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<span id="board" >
+	</span>
+	<script>
+		var wincombos = [ [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6] ];
+		var turn = "X";
+		var plays = ["","","","","","","","",""];
+		var board = document.querySelector("#board");
+		function render (plays) {
+			//board.innerHTML = "";
+			//for ( var ii = 0 ; ii < 9 ; ii++ ) {
+			board.innerHTML = ""
+				+ `<div>${plays[0]}</div>`
+				+ `<div>${plays[1]}</div>`
+				+ `<div>${plays[2]}</div>`
+				+ `<div>${plays[3]}</div>`
+				+ `<div>${plays[4]}</div>`
+				+ `<div>${plays[5]}</div>`
+				+ `<div>${plays[6]}</div>`
+				+ `<div>${plays[7]}</div>`
+				+ `<div>${plays[8]}</div>`
+				;
+				//board.appendChild(document.createElement("div")).innerHTML = "test";
+				//board.children[ii].textContent = plays[ii];
+			//}
+		}
+		render(plays);
+		for ( var ii = 0 ; ii<9 ; ii++ ) {
+			board.children[ii].addEventListener('click', event => {
+				var ii = [...board.children].indexOf(event.target);
+				plays[ii] = turn = (turn === "X" ? "O" : "X");
+				render(plays);
+				for ( combo of wincombos ) {
+					if (
+						board.children[combo[0]].textContent === 
+						board.children[combo[1]].textContent &&
+						board.children[combo[1]].textContent ===
+						board.children[combo[2]].textContent &&
+						board.children[combo[2]].textContent !== "" ) {
+						alert("win");
+						break;
+					}
+				}
+			});
+		}
+	</script>
+</body>
+</html>
