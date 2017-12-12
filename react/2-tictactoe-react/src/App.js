@@ -31,7 +31,7 @@ class App extends Component {
   // CTRL
   handleClick = (event) => {
     console.log(this);
-    var board = document.querySelector("#board");
+    var board = event.target.parentNode;
     var ii = Array.from(board.children).indexOf(event.target);
     this.state.plays[ii] = this.state.turn = (this.state.turn === "X" ? "O" : "X");
     this.setState(this.state);
